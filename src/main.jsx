@@ -115,6 +115,7 @@ function App() {
   const [activeReview, setActiveReview] = useState(0);
   const [activeService, setActiveService] = useState(0);
   const [isWhatsAppOpen, setIsWhatsAppOpen] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const review = reviews[activeReview];
   const service = services[activeService];
   const whatsappText = encodeURIComponent('Hi Northline Electrical, I would like to request a quote.');
@@ -203,6 +204,8 @@ function App() {
     setActiveReview((current) => (current + direction + reviews.length) % reviews.length);
   };
 
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
     <main>
       <div className="cursor-aura" aria-hidden="true" />
@@ -217,18 +220,31 @@ function App() {
         </svg>
       </div>
 
-      <header className={`site-header ${isScrolled ? 'site-header--scrolled' : ''}`}>
+      <header className={`site-header ${isScrolled ? 'site-header--scrolled' : ''} ${isMenuOpen ? 'site-header--menu-open' : ''}`}>
         <a className="monogram" href="#top" aria-label={`${business.name} home`}>
           N
         </a>
-        <nav aria-label="Main navigation">
-          <a href="#about" data-cursor="About">About</a>
-          <a href="#services" data-cursor="Work">Services</a>
-          <a href="#gallery" data-cursor="Look">Gallery</a>
-          <a href="#areas" data-cursor="Areas">Areas</a>
-          <a href="#contact" data-cursor="Hello">Contact</a>
+        <nav aria-label="Main navigation" id="site-navigation">
+          <a href="#about" data-cursor="About" onClick={closeMenu}>About</a>
+          <a href="#services" data-cursor="Work" onClick={closeMenu}>Services</a>
+          <a href="#gallery" data-cursor="Look" onClick={closeMenu}>Gallery</a>
+          <a href="#areas" data-cursor="Areas" onClick={closeMenu}>Areas</a>
+          <a href="#contact" data-cursor="Hello" onClick={closeMenu}>Contact</a>
         </nav>
         <a className="book-link" href="#contact" data-cursor="Call">Contact</a>
+        <button
+          className="menu-toggle"
+          type="button"
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-controls="site-navigation"
+          aria-expanded={isMenuOpen}
+          onClick={() => setIsMenuOpen((open) => !open)}
+          data-cursor="Menu"
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </header>
 
       <section className="hero" id="top">
