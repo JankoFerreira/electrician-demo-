@@ -304,14 +304,18 @@ nav a:hover,
 }
 
 .hero-kicker {
-  align-self: end;
-  margin: 0 0 -5vh;
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 110px);
+  margin: 0;
   color: rgba(255, 250, 242, 0.78);
   font-size: 0.74rem;
   font-weight: 600;
   letter-spacing: 0.26em;
   text-transform: uppercase;
-  animation: fadeLift 900ms ease-out both 200ms;
+  text-align: center;
+  transform: translateX(-50%);
+  animation: kickerLift 900ms ease-out both 200ms;
 }
 
 .hero-title {
@@ -369,8 +373,8 @@ nav a:hover,
 
 .hero-book {
   position: absolute;
-  left: calc(50% + 90px);
-  bottom: clamp(30px, 6vh, 64px);
+  left: 50%;
+  bottom: clamp(56px, 8vh, 88px);
   display: inline-flex;
   align-items: center;
   min-height: 44px;
@@ -392,8 +396,8 @@ nav a:hover,
 
 .hero-scroll {
   position: absolute;
-  bottom: clamp(28px, 6vh, 60px);
-  left: calc(50% - 118px);
+  bottom: clamp(24px, 4vh, 40px);
+  left: 50%;
   display: flex;
   align-items: center;
   gap: 14px;
@@ -401,6 +405,7 @@ nav a:hover,
   font-size: 0.66rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
+  transform: translateX(-50%);
 }
 
 .hero-scroll span {
@@ -1655,6 +1660,18 @@ dd {
   }
 }
 
+@keyframes kickerLift {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
 @keyframes subtitleLift {
   from {
     opacity: 0;
@@ -1849,7 +1866,7 @@ dd {
   }
 
   .hero-kicker {
-    margin-bottom: -3vh;
+    top: calc(50% + 86px);
     font-size: 0.68rem;
     letter-spacing: 0.18em;
   }
@@ -1860,14 +1877,14 @@ dd {
   }
 
   .hero-book {
-    left: 58%;
-    bottom: 24px;
+    left: 50%;
+    bottom: 54px;
     padding: 11px 18px;
   }
 
   .hero-scroll {
-    bottom: 28px;
-    left: 28%;
+    bottom: 22px;
+    left: 50%;
   }
 
   .promise,
